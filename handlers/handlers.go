@@ -16,6 +16,9 @@ var users = map[string]string{
 	"raghu": "raghupwd",
 }
 
+type Product struct {
+	Name string
+}
 type Credentials struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
