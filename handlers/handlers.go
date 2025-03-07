@@ -12,8 +12,111 @@ import (
 var jwtKey = []byte("secret_key")
 
 var users = map[string]string{
-	"ajay":  "ajaypwd",
-	"raghu": "raghupwd",
+	"ajay":     "ajaypwd",
+	"raghu":    "raghupwd",
+	"susan":    "susanpwd",
+	"mike":     "mikepwd",
+	"john":     "johnpwd",
+	"emily":    "emilypwd",
+	"robert":   "robertpwd",
+	"lisa":     "lisapwd",
+	"peter":    "peterpwd",
+	"anna":     "annapwd",
+	"tom":      "tompwd",
+	"julia":    "juliapwd",
+	"kevin":    "kevinpwd",
+	"sophie":   "sophiepwd",
+	"david":    "davidpwd",
+	"rachel":   "rachelpwd",
+	"charles":  "charlespwd",
+	"mary":     "marypwd",
+	"paul":     "paulpwd",
+	"steve":    "stevepwd",
+	"jack":     "jackpwd",
+	"james":    "jamespwd",
+	"karen":    "karenpwd",
+	"sandra":   "sandrapwd",
+	"ben":      "benpwd",
+	"olivia":   "oliviapwd",
+	"matt":     "mattpwd",
+	"laura":    "laurapwd",
+	"will":     "willpwd",
+	"claire":   "clairepwd",
+	"alex":     "alexpwd",
+	"grace":    "gracepwd",
+	"ian":      "ianpwd",
+	"zoe":      "zoepwd",
+	"daniel":   "danielpwd",
+	"lucy":     "lucypwd",
+	"george":   "georgepwd",
+	"beth":     "bethpwd",
+	"tim":      "timpwd",
+	"isla":     "islapwd",
+	"jim":      "jimpwd",
+	"sarah":    "sarahpwd",
+	"kyle":     "kylepwd",
+	"vicky":    "vickypwd",
+	"maggie":   "maggiepwd",
+	"leah":     "leahpwd",
+	"max":      "maxpwd",
+	"joseph":   "josephpwd",
+	"luke":     "lukepwd",
+	"holly":    "hollypwd",
+	"carl":     "carlpwd",
+	"donna":    "donnapwd",
+	"jenny":    "jennypwd",
+	"greg":     "gregpwd",
+	"amy":      "amypwd",
+	"fiona":    "fionapwd",
+	"brian":    "brianpwd",
+	"toni":     "tonipwd",
+	"lucas":    "lucaspwd",
+	"olga":     "olgapwd",
+	"morgan":   "morganpwd",
+	"mia":      "miapwd",
+	"nathan":   "nathanpwd",
+	"ella":     "ellapwd",
+	"sam":      "sampwd",
+	"geoff":    "geoffpwd",
+	"tina":     "tinapwd",
+	"victor":   "victorpwd",
+	"leon":     "leonpwd",
+	"alison":   "alisonpwd",
+	"hannah":   "hannahpwd",
+	"roxy":     "roxypwd",
+	"chris":    "chrispwd",
+	"deborah":  "deborahpwd",
+	"mark":     "markpwd",
+	"nina":     "ninapwd",
+	"hugo":     "hugopwd",
+	"tess":     "tesspwd",
+	"daisy":    "daisypwd",
+	"aiden":    "aidenpwd",
+	"rose":     "rosepwd",
+	"simon":    "simonpwd",
+	"helen":    "helenpwd",
+	"natalie":  "nataliepwd",
+	"chloe":    "chloepwd",
+	"jackson":  "jacksonpwd",
+	"quinn":    "quinnpwd",
+	"penny":    "pennypwd",
+	"ellen":    "ellenpwd",
+	"sean":     "seanpwd",
+	"toby":     "tobypwd",
+	"jason":    "jasonpwd",
+	"felix":    "felixpwd",
+	"kim":      "kimpwd",
+	"maria":    "mariapwd",
+	"jasmine":  "jasminepwd",
+	"josh":     "joshpwd",
+	"jennifer": "jenniferpwd",
+	"ron":      "ronpwd",
+	"alina":    "alinapwd",
+	"edward":   "edwardpwd",
+	"jacob":    "jacobpwd",
+	"valerie":  "valeriepwd",
+	"hank":     "hankpwd",
+	"nancy":    "nancypwd",
 }
 
 type Product struct {
@@ -94,17 +197,19 @@ func Login(response http.ResponseWriter, request *http.Request) {
 	fmt.Println("returned at the end included cookie as well")
 }
 func Home(response http.ResponseWriter, request *http.Request) {
-	cookie, err := request.Cookie("token")
+	// cookie, err := request.Cookie("token")
 
-	if err != nil {
-		if err == http.ErrNoCookie {
-			response.WriteHeader(http.StatusUnauthorized)
-			return
-		}
-		response.WriteHeader((http.StatusBadRequest))
-		return
-	}
-	tokenString := cookie.Value
+	// if err != nil {
+	// 	if err == http.ErrNoCookie {
+	// 		response.WriteHeader(http.StatusUnauthorized)
+	// 		return
+	// 	}
+	// 	response.WriteHeader((http.StatusBadRequest))
+	// 	return
+	// }
+
+	header := request.Header.Get("Authorization")
+	tokenString := header
 	claims := &Claims{}
 
 	tkn, err := jwt.ParseWithClaims(tokenString, claims, func(t *jwt.Token) (interface{}, error) {

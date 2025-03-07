@@ -2,38 +2,56 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
 	"sync"
+
+	"github.com/coderajay94/golang-jwt/handlers"
+	"github.com/coderajay94/golang-jwt/structs"
 )
 
 func main() {
 
-	//http.HandleFunc("/login", handlers.Login)
-	//http.HandleFunc("/home", handlers.Home)
-	//http.HandleFunc("/refresh", Refresh)
+	http.HandleFunc("/login", handlers.Login)
+	http.HandleFunc("/home", handlers.Home)
+	http.HandleFunc("/refresh", handlers.Refresh)
 
-	//log.Fatal(http.ListenAndServe(":8080", nil))
+	log.Fatal(http.ListenAndServe(":8080", nil))
 
-	//userInfo := structs.Product{Name: "ajay", Review: 5, IsUS: true}
-	//fmt.Println(userInfo)
-	//fmt.Printf("%+v\n", userInfo)
-	//fmt.Println(userInfo.SingleLine())
+	userInfo := structs.Product{Name: "ajay", Review: 5, IsUS: true}
+	fmt.Println(userInfo)
+	fmt.Printf("%+v\n", userInfo)
+	fmt.Println(userInfo.SingleLine())
+}
 
-	ch := make(chan bool)
-	// go SayHello(ch)
-	// <-ch
+// ch := make(chan bool)
+// // go SayHello(ch)
+// // <-ch
 
-	counter := 0
-	wg := sync.WaitGroup{}
-	mx := sync.Mutex{}
-	wg.Add(1)
-	go SayHello(&wg, ch, &counter, &mx)
+// //workign code
+// counter := 0
+// wg := sync.WaitGroup{}
+// mx := sync.Mutex{}
+// wg.Add(1)
+// go SayHello(&wg, ch, &counter, &mx)
 
-	wg.Add(1)
-	go SayBye(&wg, ch, &counter, &mx)
+// wg.Add(1)
+// go SayBye(&wg, ch, &counter, &mx)
 
-	wg.Wait()
-	fmt.Println("welcome to the jwt authentication demo server")
-	fmt.Println("counter value: ", counter)
+// wg.Wait()
+// fmt.Println("welcome to the jwt authentication demo server")
+// fmt.Println("counter value: ", counter)
+
+// obj := structs.Squares{Length: 5}
+// obj2 := structs.Circle{Radius: 5}
+
+// printMe(obj)
+// printMe(obj2)
+//}
+
+func printMe(obj structs.Shape) {
+	fmt.Println(obj.Area())
+	fmt.Println(obj.Perimeter())
 }
 
 func SayHello(wg *sync.WaitGroup, ch chan bool, counter *int, mx *sync.Mutex) {
